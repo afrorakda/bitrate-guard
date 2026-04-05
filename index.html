@@ -34,73 +34,71 @@
         .container {
             width: 100%;
             max-width: 420px;
-            padding: 160px 20px 40px; /* 結果窓がFixedなので上部に大きな余白を確保 */
+            padding: 20px;
             box-sizing: border-box;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
         }
 
-        h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -1px; }
-        .subtitle { font-size: 0.9rem; color: var(--text-gray); font-weight: 600; margin-bottom: 20px; }
-
-        /* Fixed Result Card - 画面最上部に絶対固定 */
-        .fixed-header {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 420px;
-            padding: 10px 20px;
-            box-sizing: border-box;
-            background: var(--bg); /* 背景を白にして下の要素が透けないように */
-            z-index: 1000;
+        /* Header Area (Buttons shifted up) */
+        .top-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
-        .result-card {
+        .kofi-btn-sm {
+            flex: 1;
             background: var(--main);
             color: #fff;
-            padding: 15px 10px;
-            border-radius: var(--radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
         }
-        .result-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 4px; }
-        .result-val { font-size: 2.5rem; font-weight: 900; line-height: 1; }
-        .result-unit { font-size: 0.9rem; font-weight: 700; margin-left: 4px; }
-        .result-val.low { color: var(--warning); }
+        .home-btn-sm {
+            flex: 1;
+            background: var(--accent);
+            color: var(--main);
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 11px;
+            cursor: pointer;
+        }
 
-        /* Preset Buttons */
-        .presets {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 10px;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-        }
+        h1 { font-size: 1.5rem; font-weight: 800; margin: 0 0 4px; letter-spacing: -1px; text-align: left; }
+        .subtitle { font-size: 0.85rem; color: var(--text-gray); font-weight: 600; margin-bottom: 20px; text-align: left; }
+
+        /* Input Group Area */
+        .input-group { position: relative; text-align: left; margin-bottom: 15px; }
+        .input-label { font-size: 0.8rem; font-weight: 800; color: var(--main); margin-left: 5px; margin-bottom: 6px; display: block; }
+        
+        .presets { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
         .preset-btn {
             background: var(--input-bg);
             border: 1px solid var(--accent);
             padding: 5px 10px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 0.7rem;
             font-weight: 800;
             color: var(--text-gray);
             cursor: pointer;
             -webkit-appearance: none;
         }
-        .preset-btn:active { background: var(--accent); color: var(--main); }
 
-        .input-group { position: relative; text-align: left; margin-bottom: 15px; }
-        .input-label { font-size: 0.85rem; font-weight: 800; color: var(--main); margin-left: 5px; margin-bottom: 6px; display: block; }
-        
         .time-inputs { display: flex; gap: 8px; }
         .input-wrap { position: relative; flex: 1; }
         
         input {
             width: 100%;
-            padding: 16px 35px 16px 12px;
+            padding: 14px 35px 14px 12px;
             border: 2px solid var(--accent);
             border-radius: var(--radius);
             background: var(--input-bg);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--main) !important;
             box-sizing: border-box;
@@ -109,7 +107,7 @@
             -webkit-text-fill-color: var(--main) !important;
             opacity: 1 !important;
         }
-        input::placeholder { color: var(--placeholder); -webkit-text-fill-color: var(--placeholder); }
+        input::placeholder { color: var(--placeholder); }
 
         .clr-btn {
             position: absolute;
@@ -127,21 +125,25 @@
         }
         .clr-btn.active { display: block; }
 
-        .note { font-size: 0.8rem; color: var(--text-gray); font-weight: 600; margin-top: 15px; line-height: 1.4; }
+        /* Result Card (Now below inputs) */
+        .result-card {
+            background: var(--main);
+            color: #fff;
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-top: 5px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .result-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 4px; }
+        .result-val { font-size: 2.5rem; font-weight: 900; line-height: 1; }
+        .result-unit { font-size: 0.9rem; font-weight: 700; margin-left: 4px; }
+        .result-val.low { color: var(--warning); }
 
-        footer { margin-top: 40px; font-size: 11px; color: #777; line-height: 1.8; font-weight: 500; }
+        .note { font-size: 0.75rem; color: var(--text-gray); font-weight: 600; margin-top: 15px; line-height: 1.4; text-align: center; }
+
+        footer { margin-top: auto; padding: 30px 0 10px; font-size: 10px; color: #777; line-height: 1.8; font-weight: 500; text-align: center; }
         footer a { color: inherit; text-decoration: underline; }
-        .footer-btns { margin-top: 25px; }
-        .kofi-btn {
-            display: inline-block; background: var(--main); color: #fff;
-            padding: 12px 24px; border-radius: var(--radius);
-            text-decoration: none; font-weight: bold; font-size: 14px; margin-bottom: 12px;
-        }
-        .home-btn {
-            display: block; width: 70%; margin: 0 auto; background: var(--accent);
-            color: var(--main); border: none; padding: 10px;
-            border-radius: var(--radius); font-weight: 800; font-size: 13px; cursor: pointer;
-        }
 
         #modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -156,14 +158,12 @@
 </head>
 <body>
 
-<div class="fixed-header">
-    <div class="result-card">
-        <div class="result-label">Recommended Video Bitrate</div>
-        <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
-    </div>
-</div>
-
 <div class="container">
+    <div class="top-nav">
+        <a href="https://ko-fi.com/afrorakda" target="_blank" class="kofi-btn-sm">☕️buy me a coffee</a>
+        <button class="home-btn-sm" onclick="showModal()">Add to Home</button>
+    </div>
+
     <h1>Bitrate Guard</h1>
     <p class="subtitle">Secure export within size limits.</p>
 
@@ -195,12 +195,12 @@
         </div>
     </div>
 
-    <p class="note">Automatically reserves 128kbps for audio<br>and includes a 5% safety margin.</p>
-
-    <div class="footer-btns">
-        <a href="https://ko-fi.com/afrorakda" target="_blank" class="kofi-btn">☕️buy me a coffee</a>
-        <button class="home-btn" onclick="showModal()">Add to Home Screen</button>
+    <div class="result-card">
+        <div class="result-label">Recommended Video Bitrate</div>
+        <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
     </div>
+
+    <p class="note">Includes 5% safety margin & 128kbps audio.</p>
 
     <footer>
         <div>No login / No tracking / No ads / Browser only</div>
