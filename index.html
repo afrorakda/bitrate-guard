@@ -34,105 +34,103 @@
         .container {
             width: 100%;
             max-width: 420px;
-            padding: 20px;
+            padding: 10px 15px; /* 上下パディングを最小化 */
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
         }
 
+        /* 究極にコンパクトなヘッダー */
         .top-nav {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 10px;
         }
-        .kofi-btn-sm {
-            flex: 1; background: var(--main); color: #fff; padding: 10px;
-            border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 11px; text-align: center;
+        .nav-btn {
+            flex: 1; padding: 8px; border-radius: 10px; font-weight: 800; font-size: 10px;
+            text-align: center; text-decoration: none; border: none; cursor: pointer;
         }
-        .home-btn-sm {
-            flex: 1; background: var(--accent); color: var(--main); border: none; padding: 10px;
-            border-radius: 10px; font-weight: 800; font-size: 11px; cursor: pointer;
-        }
+        .kofi { background: var(--main); color: #fff; }
+        .home { background: var(--accent); color: var(--main); }
 
-        header { text-align: left; margin-bottom: 20px; }
-        h1 { font-size: 1.5rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
-        .subtitle { font-size: 0.8rem; color: var(--text-gray); font-weight: 600; margin-top: 2px; }
+        header { text-align: left; margin-bottom: 12px; }
+        h1 { font-size: 1.2rem; font-weight: 800; margin: 0; letter-spacing: -0.5px; }
+        .subtitle { font-size: 0.75rem; color: var(--text-gray); font-weight: 600; }
 
-        /* Input Group - Placed high to stay above keyboard */
-        .input-group { position: relative; text-align: left; margin-bottom: 12px; }
-        .input-label { font-size: 0.8rem; font-weight: 800; color: var(--main); margin-left: 4px; margin-bottom: 4px; display: block; }
+        /* 入力エリアを上に集約 */
+        .input-group { position: relative; text-align: left; margin-bottom: 8px; }
+        .input-label { font-size: 0.7rem; font-weight: 800; color: var(--main); margin-left: 4px; margin-bottom: 2px; display: block; }
         
-        .presets { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+        .presets { display: flex; gap: 4px; margin-bottom: 8px; }
         .preset-btn {
             background: var(--input-bg); border: 1px solid var(--accent);
-            padding: 5px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 800;
-            color: var(--text-gray); cursor: pointer; -webkit-appearance: none;
+            padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 800;
+            color: var(--text-gray); cursor: pointer;
         }
 
-        .time-inputs { display: flex; gap: 8px; }
+        .time-inputs { display: flex; gap: 6px; }
         .input-wrap { position: relative; flex: 1; }
         
         input {
             width: 100%;
-            padding: 14px 35px 14px 12px;
+            padding: 10px 30px 10px 10px;
             border: 2px solid var(--accent);
-            border-radius: var(--radius);
+            border-radius: 10px;
             background: var(--input-bg);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--main) !important;
             box-sizing: border-box;
             outline: none;
             -webkit-appearance: none;
             -webkit-text-fill-color: var(--main) !important;
-            opacity: 1 !important;
         }
-        input::placeholder { color: var(--placeholder); -webkit-text-fill-color: var(--placeholder); }
+        input::placeholder { color: var(--placeholder); }
 
         .clr-btn {
-            position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-            background: none; border: none; color: #ccc; font-size: 1.3rem;
-            font-weight: 800; cursor: pointer; display: none; padding: 5px;
+            position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: #ccc; font-size: 1.1rem;
+            font-weight: 800; cursor: pointer; display: none;
         }
         .clr-btn.active { display: block; }
 
-        /* Result Card - Positioned immediately under inputs */
+        /* 結果窓を入力欄のすぐ下に配置 */
         .result-card {
             background: var(--main);
             color: #fff;
-            padding: 15px;
+            padding: 12px;
             border-radius: var(--radius);
-            margin: 10px 0 20px;
+            margin: 5px 0;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .result-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 2px; }
-        .result-val { font-size: 2.5rem; font-weight: 900; line-height: 1; }
-        .result-unit { font-size: 0.9rem; font-weight: 700; margin-left: 4px; }
+        .result-label { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; margin-bottom: 2px; }
+        .result-val { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+        .result-unit { font-size: 0.8rem; font-weight: 700; margin-left: 3px; }
         .result-val.low { color: var(--warning); }
 
-        .note { font-size: 0.75rem; color: var(--text-gray); font-weight: 600; text-align: center; line-height: 1.4; }
+        .note { font-size: 0.65rem; color: var(--text-gray); font-weight: 600; text-align: center; margin-top: 8px; }
 
-        footer { margin-top: auto; padding: 40px 0 10px; font-size: 10px; color: #777; line-height: 1.8; text-align: center; }
-        footer a { color: inherit; text-decoration: underline; }
+        footer { margin-top: auto; padding: 20px 0 5px; font-size: 9px; color: #aaa; text-align: center; }
+        footer a { color: inherit; }
 
         #modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 2000;
         }
         .modal-content {
-            background: #fff; width: 85%; max-width: 340px; padding: 30px;
-            border-radius: var(--radius); text-align: left; position: relative; color: var(--main);
+            background: #fff; width: 85%; max-width: 340px; padding: 25px;
+            border-radius: var(--radius); text-align: left; position: relative;
         }
-        .close-x { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #888; cursor: pointer; }
+        .close-x { position: absolute; top: 10px; right: 15px; font-size: 20px; color: #888; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="top-nav">
-        <a href="https://ko-fi.com/afrorakda" target="_blank" class="kofi-btn-sm">☕️buy me a coffee</a>
-        <button class="home-btn-sm" onclick="showModal()">Add to Home</button>
+        <a href="https://ko-fi.com/afrorakda" target="_blank" class="nav-btn kofi">☕️buy me a coffee</a>
+        <button class="nav-btn home" onclick="showModal()">Add to Home</button>
     </div>
 
     <header>
