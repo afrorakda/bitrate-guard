@@ -34,7 +34,7 @@
         .container {
             width: 100%;
             max-width: 420px;
-            padding: 20px;
+            padding: 160px 20px 40px; /* 結果窓がFixedなので上部に大きな余白を確保 */
             box-sizing: border-box;
             text-align: center;
         }
@@ -42,42 +42,49 @@
         h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -1px; }
         .subtitle { font-size: 0.9rem; color: var(--text-gray); font-weight: 600; margin-bottom: 20px; }
 
-        /* Sticky Result Card */
-        .sticky-wrapper {
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            margin-bottom: 25px;
+        /* Fixed Result Card - 画面最上部に絶対固定 */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 420px;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            background: var(--bg); /* 背景を白にして下の要素が透けないように */
+            z-index: 1000;
         }
         .result-card {
             background: var(--main);
             color: #fff;
-            padding: 20px 15px;
+            padding: 15px 10px;
             border-radius: var(--radius);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .result-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 5px; }
-        .result-val { font-size: 2.8rem; font-weight: 900; line-height: 1; }
-        .result-unit { font-size: 1rem; font-weight: 700; margin-left: 4px; }
+        .result-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 4px; }
+        .result-val { font-size: 2.5rem; font-weight: 900; line-height: 1; }
+        .result-unit { font-size: 0.9rem; font-weight: 700; margin-left: 4px; }
         .result-val.low { color: var(--warning); }
 
         /* Preset Buttons */
         .presets {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             margin-bottom: 10px;
             justify-content: flex-start;
-            padding-left: 5px;
+            flex-wrap: wrap;
         }
         .preset-btn {
             background: var(--input-bg);
             border: 1px solid var(--accent);
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 10px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 800;
             color: var(--text-gray);
             cursor: pointer;
+            -webkit-appearance: none;
         }
         .preset-btn:active { background: var(--accent); color: var(--main); }
 
@@ -89,7 +96,7 @@
         
         input {
             width: 100%;
-            padding: 16px 40px 16px 15px;
+            padding: 16px 35px 16px 12px;
             border: 2px solid var(--accent);
             border-radius: var(--radius);
             background: var(--input-bg);
@@ -106,13 +113,13 @@
 
         .clr-btn {
             position: absolute;
-            right: 12px;
+            right: 8px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
             color: var(--placeholder);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             cursor: pointer;
             display: none;
@@ -120,7 +127,7 @@
         }
         .clr-btn.active { display: block; }
 
-        .note { font-size: 0.8rem; color: var(--text-gray); font-weight: 600; margin-top: 20px; line-height: 1.4; }
+        .note { font-size: 0.8rem; color: var(--text-gray); font-weight: 600; margin-top: 15px; line-height: 1.4; }
 
         footer { margin-top: 40px; font-size: 11px; color: #777; line-height: 1.8; font-weight: 500; }
         footer a { color: inherit; text-decoration: underline; }
@@ -138,7 +145,7 @@
 
         #modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 1000;
+            background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 2000;
         }
         .modal-content {
             background: #fff; width: 85%; max-width: 340px; padding: 35px;
@@ -149,16 +156,16 @@
 </head>
 <body>
 
+<div class="fixed-header">
+    <div class="result-card">
+        <div class="result-label">Recommended Video Bitrate</div>
+        <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
+    </div>
+</div>
+
 <div class="container">
     <h1>Bitrate Guard</h1>
     <p class="subtitle">Secure export within size limits.</p>
-
-    <div class="sticky-wrapper">
-        <div class="result-card">
-            <div class="result-label">Recommended Video Bitrate</div>
-            <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
-        </div>
-    </div>
 
     <div class="input-group">
         <span class="input-label">Target File Size (MB)</span>
