@@ -16,7 +16,7 @@
             --input-bg: #fafafa;
             --radius: 15px;
             --text-gray: #666;
-            --placeholder: #eee;
+            --placeholder: #ddd;
             --warning: #ff4444;
         }
 
@@ -34,20 +34,17 @@
         .container {
             width: 100%;
             max-width: 420px;
-            padding: 15px;
+            padding: 20px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
         }
 
-        /* 隠す要素のコントロール */
-        .hide-on-focus { transition: all 0.2s ease; opacity: 1; }
-        body.is-typing .hide-on-focus { 
-            display: none; /* 入力中は消去してスペースを確保 */
+        .top-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
         }
-
-        .top-nav { display: flex; gap: 10px; margin-bottom: 15px; }
         .kofi-btn-sm {
             flex: 1; background: var(--main); color: #fff; padding: 10px;
             border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 11px; text-align: center;
@@ -57,34 +54,19 @@
             border-radius: 10px; font-weight: 800; font-size: 11px; cursor: pointer;
         }
 
-        header { text-align: left; margin-bottom: 15px; }
-        h1 { font-size: 1.4rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
-        .subtitle { font-size: 0.8rem; color: var(--text-gray); font-weight: 600; }
+        header { text-align: left; margin-bottom: 20px; }
+        h1 { font-size: 1.5rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
+        .subtitle { font-size: 0.8rem; color: var(--text-gray); font-weight: 600; margin-top: 2px; }
 
-        /* Result Card - Always visible */
-        .result-card {
-            background: var(--main);
-            color: #fff;
-            padding: 15px;
-            border-radius: var(--radius);
-            margin-bottom: 15px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .result-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; margin-bottom: 2px; }
-        .result-val { font-size: 2.4rem; font-weight: 900; line-height: 1; }
-        .result-unit { font-size: 0.9rem; font-weight: 700; margin-left: 4px; }
-        .result-val.low { color: var(--warning); }
-
-        /* Input area focused style */
-        .input-group { position: relative; text-align: left; margin-bottom: 10px; }
-        .input-label { font-size: 0.75rem; font-weight: 800; color: var(--main); margin-left: 4px; margin-bottom: 4px; display: block; }
+        /* Input Group - Placed high to stay above keyboard */
+        .input-group { position: relative; text-align: left; margin-bottom: 12px; }
+        .input-label { font-size: 0.8rem; font-weight: 800; color: var(--main); margin-left: 4px; margin-bottom: 4px; display: block; }
         
-        .presets { display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; }
+        .presets { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
         .preset-btn {
             background: var(--input-bg); border: 1px solid var(--accent);
-            padding: 4px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 800;
-            color: var(--text-gray); cursor: pointer;
+            padding: 5px 10px; border-radius: 8px; font-size: 0.7rem; font-weight: 800;
+            color: var(--text-gray); cursor: pointer; -webkit-appearance: none;
         }
 
         .time-inputs { display: flex; gap: 8px; }
@@ -92,7 +74,7 @@
         
         input {
             width: 100%;
-            padding: 12px 32px 12px 10px;
+            padding: 14px 35px 14px 12px;
             border: 2px solid var(--accent);
             border-radius: var(--radius);
             background: var(--input-bg);
@@ -103,20 +85,36 @@
             outline: none;
             -webkit-appearance: none;
             -webkit-text-fill-color: var(--main) !important;
+            opacity: 1 !important;
         }
         input::placeholder { color: var(--placeholder); -webkit-text-fill-color: var(--placeholder); }
 
         .clr-btn {
             position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-            background: none; border: none; color: #ddd; font-size: 1.2rem;
-            font-weight: 800; cursor: pointer; display: none;
+            background: none; border: none; color: #ccc; font-size: 1.3rem;
+            font-weight: 800; cursor: pointer; display: none; padding: 5px;
         }
         .clr-btn.active { display: block; }
 
-        .note { font-size: 0.7rem; color: var(--text-gray); font-weight: 600; margin-top: 10px; text-align: center; }
+        /* Result Card - Positioned immediately under inputs */
+        .result-card {
+            background: var(--main);
+            color: #fff;
+            padding: 15px;
+            border-radius: var(--radius);
+            margin: 10px 0 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .result-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 2px; }
+        .result-val { font-size: 2.5rem; font-weight: 900; line-height: 1; }
+        .result-unit { font-size: 0.9rem; font-weight: 700; margin-left: 4px; }
+        .result-val.low { color: var(--warning); }
 
-        footer { margin-top: auto; padding: 20px 0 10px; font-size: 10px; color: #777; text-align: center; }
-        footer a { color: inherit; }
+        .note { font-size: 0.75rem; color: var(--text-gray); font-weight: 600; text-align: center; line-height: 1.4; }
+
+        footer { margin-top: auto; padding: 40px 0 10px; font-size: 10px; color: #777; line-height: 1.8; text-align: center; }
+        footer a { color: inherit; text-decoration: underline; }
 
         #modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -124,7 +122,7 @@
         }
         .modal-content {
             background: #fff; width: 85%; max-width: 340px; padding: 30px;
-            border-radius: var(--radius); text-align: left; position: relative;
+            border-radius: var(--radius); text-align: left; position: relative; color: var(--main);
         }
         .close-x { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #888; cursor: pointer; }
     </style>
@@ -132,31 +130,25 @@
 <body>
 
 <div class="container">
-    <div class="hide-on-focus">
-        <div class="top-nav">
-            <a href="https://ko-fi.com/afrorakda" target="_blank" class="kofi-btn-sm">☕️buy me a coffee</a>
-            <button class="home-btn-sm" onclick="showModal()">Add to Home</button>
-        </div>
-        <header>
-            <h1>Bitrate Guard</h1>
-            <p class="subtitle">Secure export within size limits.</p>
-        </header>
+    <div class="top-nav">
+        <a href="https://ko-fi.com/afrorakda" target="_blank" class="kofi-btn-sm">☕️buy me a coffee</a>
+        <button class="home-btn-sm" onclick="showModal()">Add to Home</button>
     </div>
 
-    <div class="result-card">
-        <div class="result-label">Recommended Video Bitrate</div>
-        <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
-    </div>
+    <header>
+        <h1>Bitrate Guard</h1>
+        <p class="subtitle">Secure export within size limits.</p>
+    </header>
 
     <div class="input-group">
         <span class="input-label">Target File Size (MB)</span>
         <div class="input-wrap">
-            <input type="number" id="targetMB" placeholder="500" inputmode="numeric" oninput="calculate()" onfocus="setTyping(true)" onblur="setTyping(false)">
+            <input type="number" id="targetMB" placeholder="500" inputmode="numeric" oninput="calculate()">
             <button class="clr-btn" id="clr-mb" onclick="clearField('targetMB')">×</button>
         </div>
     </div>
 
-    <div class="presets hide-on-focus">
+    <div class="presets">
         <button class="preset-btn" onclick="setPreset(10)">10MB</button>
         <button class="preset-btn" onclick="setPreset(50)">50MB</button>
         <button class="preset-btn" onclick="setPreset(500)">500MB</button>
@@ -167,19 +159,24 @@
         <span class="input-label">Duration (Min : Sec)</span>
         <div class="time-inputs">
             <div class="input-wrap">
-                <input type="number" id="durMin" placeholder="10" inputmode="numeric" oninput="calculate()" onfocus="setTyping(true)" onblur="setTyping(false)">
+                <input type="number" id="durMin" placeholder="10" inputmode="numeric" oninput="calculate()">
                 <button class="clr-btn" id="clr-min" onclick="clearField('durMin')">×</button>
             </div>
             <div class="input-wrap">
-                <input type="number" id="durSec" placeholder="00" inputmode="numeric" oninput="calculate()" onfocus="setTyping(true)" onblur="setTyping(false)">
+                <input type="number" id="durSec" placeholder="00" inputmode="numeric" oninput="calculate()">
                 <button class="clr-btn" id="clr-sec" onclick="clearField('durSec')">×</button>
             </div>
         </div>
     </div>
 
-    <p class="note hide-on-focus">Includes 5% safety margin & 128kbps audio.</p>
+    <div class="result-card">
+        <div class="result-label">Recommended Video Bitrate</div>
+        <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
+    </div>
 
-    <footer class="hide-on-focus">
+    <p class="note">Includes 5% safety margin & 128kbps audio.</p>
+
+    <footer>
         <div>No login / No tracking / No ads / Browser only</div>
         <div><a href="https://afrorakda.com/privacy/">Privacy Policy</a> / afrorakda © 2026</div>
     </footer>
@@ -200,13 +197,6 @@
     const durMin = document.getElementById('durMin');
     const durSec = document.getElementById('durSec');
     const bitrateResult = document.getElementById('bitrateResult');
-
-    function setTyping(isTyping) {
-        // 少し遅延させないとクリックイベントが取れない場合がある
-        setTimeout(() => {
-            document.body.classList.toggle('is-typing', isTyping);
-        }, 100);
-    }
 
     function calculate() {
         const mb = parseFloat(targetMB.value) || 0;
