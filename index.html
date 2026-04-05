@@ -16,7 +16,7 @@
             --input-bg: #fafafa;
             --radius: 15px;
             --text-gray: #666;
-            --placeholder: #eee; /* 指示通り薄い色に固定 */
+            --placeholder: #ccc; /* 2段階濃く修正 */
             --warning: #ff4444;
         }
 
@@ -84,6 +84,7 @@
             -webkit-text-fill-color: var(--main) !important;
             opacity: 1 !important;
         }
+        /* iOS SafariでのPlaceholderの色を強制設定 */
         input::placeholder { color: var(--placeholder) !important; -webkit-text-fill-color: var(--placeholder) !important; }
 
         .clr-btn {
