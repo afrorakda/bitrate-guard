@@ -16,7 +16,7 @@
             --input-bg: #fafafa;
             --radius: 15px;
             --text-gray: #666;
-            --placeholder: #ccc; /* 2段階濃く修正 */
+            --placeholder: #bbb; /* さらに1段階濃く修正 */
             --warning: #ff4444;
         }
 
@@ -84,7 +84,6 @@
             -webkit-text-fill-color: var(--main) !important;
             opacity: 1 !important;
         }
-        /* iOS SafariでのPlaceholderの色を強制設定 */
         input::placeholder { color: var(--placeholder) !important; -webkit-text-fill-color: var(--placeholder) !important; }
 
         .clr-btn {
@@ -110,7 +109,7 @@
 
         .note { font-size: 0.65rem; color: var(--text-gray); font-weight: 600; text-align: center; margin-top: 8px; }
 
-        footer { margin-top: auto; padding: 20px 0 5px; font-size: 9px; color: #aaa; text-align: center; }
+        footer { margin-top: auto; padding: 20px 0 5px; font-size: 11px; color: var(--text-gray); text-align: center; } /* フッター色とサイズ修正 */
         footer a { color: inherit; }
 
         #modal {
