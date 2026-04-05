@@ -16,7 +16,7 @@
             --input-bg: #fafafa;
             --radius: 15px;
             --text-gray: #666;
-            --placeholder: #ddd;
+            --placeholder: #eee; /* 指示通り薄い色に固定 */
             --warning: #ff4444;
         }
 
@@ -34,13 +34,12 @@
         .container {
             width: 100%;
             max-width: 420px;
-            padding: 10px 15px; /* 上下パディングを最小化 */
+            padding: 10px 15px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
         }
 
-        /* 究極にコンパクトなヘッダー */
         .top-nav {
             display: flex;
             gap: 8px;
@@ -57,7 +56,6 @@
         h1 { font-size: 1.2rem; font-weight: 800; margin: 0; letter-spacing: -0.5px; }
         .subtitle { font-size: 0.75rem; color: var(--text-gray); font-weight: 600; }
 
-        /* 入力エリアを上に集約 */
         .input-group { position: relative; text-align: left; margin-bottom: 8px; }
         .input-label { font-size: 0.7rem; font-weight: 800; color: var(--main); margin-left: 4px; margin-bottom: 2px; display: block; }
         
@@ -65,7 +63,7 @@
         .preset-btn {
             background: var(--input-bg); border: 1px solid var(--accent);
             padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 800;
-            color: var(--text-gray); cursor: pointer;
+            color: var(--text-gray); cursor: pointer; -webkit-appearance: none;
         }
 
         .time-inputs { display: flex; gap: 6px; }
@@ -84,8 +82,9 @@
             outline: none;
             -webkit-appearance: none;
             -webkit-text-fill-color: var(--main) !important;
+            opacity: 1 !important;
         }
-        input::placeholder { color: var(--placeholder); }
+        input::placeholder { color: var(--placeholder) !important; -webkit-text-fill-color: var(--placeholder) !important; }
 
         .clr-btn {
             position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
@@ -94,7 +93,6 @@
         }
         .clr-btn.active { display: block; }
 
-        /* 結果窓を入力欄のすぐ下に配置 */
         .result-card {
             background: var(--main);
             color: #fff;
