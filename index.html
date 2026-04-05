@@ -17,6 +17,7 @@
             --radius: 15px;
             --text-gray: #666;
             --placeholder: #bbb;
+            --warning: #ff4444;
         }
 
         body {
@@ -33,38 +34,66 @@
         .container {
             width: 100%;
             max-width: 420px;
-            padding: 40px 20px;
+            padding: 20px;
             box-sizing: border-box;
             text-align: center;
         }
 
-        h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -1px; }
-        .subtitle { font-size: 1rem; color: var(--text-gray); font-weight: 600; margin-bottom: 35px; }
+        h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -1px; }
+        .subtitle { font-size: 0.9rem; color: var(--text-gray); font-weight: 600; margin-bottom: 20px; }
 
+        /* Sticky Result Card */
+        .sticky-wrapper {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 25px;
+        }
         .result-card {
             background: var(--main);
             color: #fff;
-            padding: 30px 20px;
+            padding: 20px 15px;
             border-radius: var(--radius);
-            margin-bottom: 35px;
-            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
-        .result-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 10px; }
-        .result-val { font-size: 3rem; font-weight: 900; line-height: 1; }
+        .result-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; opacity: 0.7; letter-spacing: 1px; margin-bottom: 5px; }
+        .result-val { font-size: 2.8rem; font-weight: 900; line-height: 1; }
         .result-unit { font-size: 1rem; font-weight: 700; margin-left: 4px; }
+        .result-val.low { color: var(--warning); }
 
-        .input-group { position: relative; text-align: left; margin-bottom: 20px; }
-        .input-label { font-size: 0.9rem; font-weight: 800; color: var(--main); margin-left: 5px; margin-bottom: 8px; display: block; }
+        /* Preset Buttons */
+        .presets {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            justify-content: flex-start;
+            padding-left: 5px;
+        }
+        .preset-btn {
+            background: var(--input-bg);
+            border: 1px solid var(--accent);
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--text-gray);
+            cursor: pointer;
+        }
+        .preset-btn:active { background: var(--accent); color: var(--main); }
+
+        .input-group { position: relative; text-align: left; margin-bottom: 15px; }
+        .input-label { font-size: 0.85rem; font-weight: 800; color: var(--main); margin-left: 5px; margin-bottom: 6px; display: block; }
         
-        .time-inputs { display: flex; gap: 10px; }
+        .time-inputs { display: flex; gap: 8px; }
+        .input-wrap { position: relative; flex: 1; }
         
         input {
             width: 100%;
-            padding: 18px 15px;
+            padding: 16px 40px 16px 15px;
             border: 2px solid var(--accent);
             border-radius: var(--radius);
             background: var(--input-bg);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--main) !important;
             box-sizing: border-box;
@@ -75,39 +104,41 @@
         }
         input::placeholder { color: var(--placeholder); -webkit-text-fill-color: var(--placeholder); }
 
-        .clear-btn {
+        .clr-btn {
             position: absolute;
-            right: 15px;
-            bottom: 14px;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
             background: none;
             border: none;
             color: var(--placeholder);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 800;
             cursor: pointer;
             display: none;
+            padding: 5px;
         }
-        .clear-btn.active { display: block; }
+        .clr-btn.active { display: block; }
 
-        .note { font-size: 0.85rem; color: var(--text-gray); font-weight: 600; margin-top: 25px; line-height: 1.5; }
+        .note { font-size: 0.8rem; color: var(--text-gray); font-weight: 600; margin-top: 20px; line-height: 1.4; }
 
-        footer { margin-top: 60px; font-size: 12px; color: #777; line-height: 1.8; font-weight: 500; }
+        footer { margin-top: 40px; font-size: 11px; color: #777; line-height: 1.8; font-weight: 500; }
         footer a { color: inherit; text-decoration: underline; }
-        .footer-btns { margin-top: 30px; }
+        .footer-btns { margin-top: 25px; }
         .kofi-btn {
             display: inline-block; background: var(--main); color: #fff;
-            padding: 14px 28px; border-radius: var(--radius);
-            text-decoration: none; font-weight: bold; font-size: 15px; margin-bottom: 15px;
+            padding: 12px 24px; border-radius: var(--radius);
+            text-decoration: none; font-weight: bold; font-size: 14px; margin-bottom: 12px;
         }
         .home-btn {
             display: block; width: 70%; margin: 0 auto; background: var(--accent);
-            color: var(--main); border: none; padding: 12px;
-            border-radius: var(--radius); font-weight: 800; font-size: 14px; cursor: pointer;
+            color: var(--main); border: none; padding: 10px;
+            border-radius: var(--radius); font-weight: 800; font-size: 13px; cursor: pointer;
         }
 
         #modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 100;
+            background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 1000;
         }
         .modal-content {
             background: #fff; width: 85%; max-width: 340px; padding: 35px;
@@ -122,22 +153,38 @@
     <h1>Bitrate Guard</h1>
     <p class="subtitle">Secure export within size limits.</p>
 
-    <div class="result-card">
-        <div class="result-label">Recommended Video Bitrate</div>
-        <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
+    <div class="sticky-wrapper">
+        <div class="result-card">
+            <div class="result-label">Recommended Video Bitrate</div>
+            <div id="bitrateResult"><span class="result-val">0.0</span><span class="result-unit">Mbps</span></div>
+        </div>
     </div>
 
     <div class="input-group">
         <span class="input-label">Target File Size (MB)</span>
-        <input type="number" id="targetMB" placeholder="500" inputmode="numeric" oninput="calculate()">
-        <button class="clear-btn" id="clr-mb" onclick="clearField('targetMB')">×</button>
+        <div class="presets">
+            <button class="preset-btn" onclick="setPreset(10)">10MB</button>
+            <button class="preset-btn" onclick="setPreset(50)">50MB</button>
+            <button class="preset-btn" onclick="setPreset(500)">500MB</button>
+            <button class="preset-btn" onclick="setPreset(1000)">1GB</button>
+        </div>
+        <div class="input-wrap">
+            <input type="number" id="targetMB" placeholder="500" inputmode="numeric" oninput="calculate()">
+            <button class="clr-btn" id="clr-mb" onclick="clearField('targetMB')">×</button>
+        </div>
     </div>
 
     <div class="input-group">
         <span class="input-label">Duration (Min : Sec)</span>
         <div class="time-inputs">
-            <input type="number" id="durMin" placeholder="10" inputmode="numeric" oninput="calculate()">
-            <input type="number" id="durSec" placeholder="00" inputmode="numeric" oninput="calculate()">
+            <div class="input-wrap">
+                <input type="number" id="durMin" placeholder="10" inputmode="numeric" oninput="calculate()">
+                <button class="clr-btn" id="clr-min" onclick="clearField('durMin')">×</button>
+            </div>
+            <div class="input-wrap">
+                <input type="number" id="durSec" placeholder="00" inputmode="numeric" oninput="calculate()">
+                <button class="clr-btn" id="clr-sec" onclick="clearField('durSec')">×</button>
+            </div>
         </div>
     </div>
 
@@ -169,34 +216,36 @@
     const durMin = document.getElementById('durMin');
     const durSec = document.getElementById('durSec');
     const bitrateResult = document.getElementById('bitrateResult');
-    const clrMb = document.getElementById('clr-mb');
 
     function calculate() {
         const mb = parseFloat(targetMB.value) || 0;
         const mins = parseFloat(durMin.value) || 0;
         const secs = parseFloat(durSec.value) || 0;
-        
         const totalSeconds = (mins * 60) + secs;
         
-        clrMb.classList.toggle('active', targetMB.value !== '');
+        updateClrBtns();
 
         if (mb > 0 && totalSeconds > 0) {
-            // Target size in Megabits (1 byte = 8 bits)
-            // Apply 5% safety margin to the target size
             const targetBits = mb * 8 * 0.95; 
-            
-            // Raw Bitrate in Mbps
-            let bitrate = targetBits / totalSeconds;
-            
-            // Subtract standard audio bitrate (128kbps = 0.128Mbps)
-            bitrate = bitrate - 0.128;
-            
+            let bitrate = (targetBits / totalSeconds) - 0.128;
             if (bitrate < 0.1) bitrate = 0.1;
             
-            bitrateResult.innerHTML = `<span class="result-val">${bitrate.toFixed(2)}</span><span class="result-unit">Mbps</span>`;
+            const warningClass = bitrate < 1.0 ? 'low' : '';
+            bitrateResult.innerHTML = `<span class="result-val ${warningClass}">${bitrate.toFixed(2)}</span><span class="result-unit">Mbps</span>`;
         } else {
             bitrateResult.innerHTML = `<span class="result-val">0.0</span><span class="result-unit">Mbps</span>`;
         }
+    }
+
+    function setPreset(val) {
+        targetMB.value = val;
+        calculate();
+    }
+
+    function updateClrBtns() {
+        document.getElementById('clr-mb').classList.toggle('active', targetMB.value !== '');
+        document.getElementById('clr-min').classList.toggle('active', durMin.value !== '');
+        document.getElementById('clr-sec').classList.toggle('active', durSec.value !== '');
     }
 
     function clearField(id) {
